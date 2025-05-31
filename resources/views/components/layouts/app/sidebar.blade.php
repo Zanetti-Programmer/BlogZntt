@@ -260,9 +260,9 @@
 
                     <!-- Developer Manager (Active Example) -->
                     <a href="{{ route('developers') }}" 
-                       class="menu-item sidebar-item flex items-center px-4 py-4 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-2xl shadow-lg group relative overflow-hidden focus-ring">
+                       class="menu-item sidebar-item flex items-center px-4 py-4 text-gray-700 dark:text-zinc-300 rounded-2xl hover:bg-gradient-to-r hover:from-slate-50 hover:to-gray-50 dark:hover:from-slate-900/20 dark:hover:to-gray-900/20 hover:text-gray-800 dark:hover:text-gray-200 group relative overflow-hidden focus-ring {{ request()->routeIs('developers') ? 'nav-item-active' : '' }}">
                         
-                        <div class="absolute inset-0 bg-gradient-to-r from-white/10 to-white/5" aria-hidden="true"></div>
+                        <div class="absolute inset-0 bg-gradient-to-r from-gray-500/10 to-slate-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true"></div>
                         
                         <div class="menu-icon w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
