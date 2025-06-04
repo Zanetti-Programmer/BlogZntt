@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Livewire\DeveloperManager;
 use Livewire\Volt\Volt;
+use App\Livewire\ArticleManager;
 
 Route::get('/', function () {
     return view('welcome');
@@ -16,6 +17,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin/developers', DeveloperManager::class)->name('developers');
 });
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin/articles', ArticleManager::class)->name('articles');
+});
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
