@@ -19,8 +19,7 @@
     <div class="grid lg:grid-cols-2 gap-8">
         <!-- Formulário Moderno -->
         <div class="backdrop-blur-xl bg-white/40 border border-white/20 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300">
-            <form wire:submit.prevent="{{'teste' ? 'atualizar' : 'salvar' }}" class="space-y-6">
-                
+            <form wire:submit.prevent="{{ $modoEdicao ? 'atualizar' : 'salvar' }}">                
                 <!-- Campo Nome com ícone -->
                 <div class="group">
                     <label class="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
