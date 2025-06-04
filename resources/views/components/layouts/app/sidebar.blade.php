@@ -122,7 +122,7 @@
     </style>
 </head>
 <body class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-zinc-900 dark:via-zinc-800 dark:to-zinc-900">
-    <div class="flex h-screen overflow-hidden">
+    <div class="flex h-screen">
         
         <!-- Sidebar overlay for mobile -->
         <div class="sidebar-overlay lg:hidden" 
@@ -258,22 +258,54 @@
                     <!-- Divider -->
                     <hr class="my-6 border-gray-200/50 dark:border-zinc-700/50" />
 
-                    <!-- Developer Manager (Active Example) -->
+                    <!-- Developer Manager -->
                     <a href="{{ route('developers') }}" 
-                       class="menu-item sidebar-item flex items-center px-4 py-4 text-gray-700 dark:text-zinc-300 rounded-2xl hover:bg-gradient-to-r hover:from-slate-50 hover:to-gray-50 dark:hover:from-slate-900/20 dark:hover:to-gray-900/20 hover:text-gray-800 dark:hover:text-gray-200 group relative overflow-hidden focus-ring {{ request()->routeIs('developers') ? 'nav-item-active' : '' }}">
+                       wire:navigate
+                       class="menu-item sidebar-item flex items-center px-4 py-4 text-gray-700 dark:text-zinc-300 rounded-2xl hover:bg-gradient-to-r hover:from-slate-50 hover:to-gray-50 dark:hover:from-slate-900/20 dark:hover:to-gray-900/20 hover:text-gray-800 dark:hover:text-gray-200 group relative overflow-hidden focus-ring {{ request()->routeIs('developers*') ? 'nav-item-active' : '' }}"
+                       aria-current="{{ request()->routeIs('developers*') ? 'page' : 'false' }}">
                         
                         <div class="absolute inset-0 bg-gradient-to-r from-gray-500/10 to-slate-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true"></div>
                         
-                        <div class="menu-icon w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                        <div class="menu-icon w-10 h-10 bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-900/50 dark:to-gray-800/50 rounded-xl flex items-center justify-center group-hover:from-gray-500 group-hover:to-slate-500 group-hover:text-white transition-all duration-300 {{ request()->routeIs('developers*') ? 'bg-white/20 text-white' : '' }}">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
                             </svg>
                         </div>
                         <div class="relative ml-4">
                             <span class="font-semibold">{{ __('Developer Manager') }}</span>
-                            <p class="text-xs text-white/80">{{ __('Gerenciar desenvolvedores') }}</p>
+                            <p class="text-xs text-gray-500 dark:text-zinc-400 group-hover:text-gray-600 dark:group-hover:text-gray-300 {{ request()->routeIs('developers*') ? 'text-white/80' : '' }}">
+                                {{ __('Gerenciar desenvolvedores') }}
+                            </p>
                         </div>
-                        <div class="ml-auto w-2 h-2 bg-white rounded-full"></div>
+                        @if(request()->routeIs('developers*'))
+                            <div class="ml-auto w-2 h-2 bg-white rounded-full"></div>
+                        @endif
+                    </a>
+
+                    <!-- Manager Articles -->
+                    <a href="{{ route('articles') }}" 
+                       wire:navigate
+                       class="menu-item sidebar-item flex items-center px-4 py-4 text-gray-700 dark:text-zinc-300 rounded-2xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-cyan-50 dark:hover:from-blue-900/20 dark:hover:to-cyan-900/20 hover:text-blue-700 dark:hover:text-blue-300 group relative overflow-hidden focus-ring {{ request()->routeIs('articles*') ? 'nav-item-active' : '' }}"
+                       aria-current="{{ request()->routeIs('articles*') ? 'page' : 'false' }}">
+                        
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true"></div>
+                        
+                        <div class="menu-icon w-10 h-10 bg-gradient-to-r from-blue-100 to-blue-200 dark:from-blue-900/50 dark:to-blue-800/50 rounded-xl flex items-center justify-center group-hover:from-blue-500 group-hover:to-cyan-500 group-hover:text-white transition-all duration-300 {{ request()->routeIs('articles*') ? 'bg-white/20 text-white' : '' }}">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"></path>
+                            </svg>
+                        </div>
+                        <div class="relative ml-4 flex-1">
+                            <span class="font-semibold">{{ __('Manager Articles') }}</span>
+                            <p class="text-xs text-gray-500 dark:text-zinc-400 group-hover:text-blue-500 dark:group-hover:text-blue-400 {{ request()->routeIs('articles*') ? 'text-white/80' : '' }}">
+                                {{ __('Gerenciar artigos') }}
+                            </p>
+                        </div>
+                        @if(request()->routeIs('articles*'))
+                            <div class="ml-auto w-2 h-2 bg-white rounded-full"></div>
+                        @else 
+                            <div class="ml-auto bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-300 text-xs px-2 py-1 rounded-full font-medium">12</div>
+                        @endif
                     </a>
 
                     <!-- Settings -->
@@ -309,7 +341,8 @@
                                     {{ auth()->user()->initials() }}
                                 </div>
                                 <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-green-400 border-2 border-white dark:border-zinc-700 rounded-full" 
-                                     aria-label="Online status"></div>
+                                     aria-label="Online status"
+                                     title="Online"></div>
                             </div>
                             <div class="flex-1 min-w-0 text-left">
                                 <p class="font-semibold text-gray-900 dark:text-zinc-100 truncate text-sm">
@@ -367,7 +400,7 @@
                         </flux:menu>
                     </flux:dropdown>
                     
-                    <!-- Quick Actions (from original layout) -->
+                    <!-- Quick Actions -->
                     <div class="flex gap-2 mt-3">
                         <form method="POST" action="{{ route('logout') }}" class="flex-1">
                             @csrf
@@ -456,7 +489,7 @@
         </header>
 
         <!-- Main Content Area -->
-        <main class="flex-1 flex flex-col overflow-hidden lg:ml-80" role="main">
+        <main class="flex-1 flex flex-col overflow-y-auto lg:ml-80" role="main">
             {{ $slot }}
         </main>
     </div>
